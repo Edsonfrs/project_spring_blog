@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,11 +28,11 @@ public class FullstackvoxController {
 	}
 	
 	@RequestMapping(value = "/posts/{id}", method = RequestMethod.GET)
-	public ModelAndView getPostDetails() {
-		ModelAndView mv = new ModelAndView("posts");
-		List<Post> posts = fullstackvoxService.findAll();
+	public ModelAndView getPostDetails(@PathVariable("id") long id) {
+		ModelAndView mv = new ModelAndView("postDetails");
+		Post post = fullstackvoxService.findById(id);
 		
-		mv.addObject("posts", posts);
+		mv.addObject("post", post);
 		return mv;
 	}
 	

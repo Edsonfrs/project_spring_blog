@@ -55,20 +55,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 color-light">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">HOME</a>
+              <a class="nav-link active" aria-current="page" href="/posts">HOME</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">QUEM SOU EU</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">BLOG</a>
-            </li>
+            
+            
             <li class="nav-item">
               <a class="nav-link" href="#">PORTFÓLIO</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">CONTATO</a>
-            </li>
+            
 
 
           </ul>
@@ -87,18 +81,29 @@
   <section>
 
 
-    <div class="row mt-3">
+    <div class="row mt-4">
       <div class="col-md-8">
-        <h3 class="pb-4 mb-4 mt-3 fst-italic border-bottom"> Posts </h3>
+      
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background-color: white; padding-left: 0px;">
+                <li class="breadcrumb-item active" aria-current="page">Posts</li>
+            </ol>
+        </nav>
         
         
 	        <article class="blog-post" th:each="post : ${posts}">
-	            <h3 class="blog-post-title" style="font-weight: bold; padding-top: 5px;">  <span th:text="${post.titulo}"></span> </h3>
+	            <a class="nounderline" style="text-decoration: none;" th:href="${(#mvc.url('FC#getPostDetails').arg(0, post.id)).build()}"> 
+	            	<h3 class="blog-post-title" style="font-weight: bold; color: black; padding-top: 5px;">  
+	            		<span th:text="${post.titulo}"></span> 
+	            	</h3>
+	           </a>
 	
 	            <p class="blog-post-meta mb-2 text-muted"> <span th:text="${post.autor}"> </span> | <span th:text="${post.data}">Data post</span> </p>
 	            
 	            
 	            <p> <span th:utext="${#strings.abbreviate(post.texto,400)} "></span> </p>
+	            
+	            
 			</article><!-- /.blog-post -->
 			
 			<nav class="blog-pagination mt-4" aria-label="Pagination">
@@ -141,21 +146,7 @@
         <!-- Section: Social media -->
         <!-- Section: Social media -->
         <section class="mb-4">
-          <!-- Facebook -->
-          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-facebook-f"></i
-          ></a>
-
-          <!-- Twitter -->
-          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-twitter"></i
-          ></a>
-
-          <!-- Google -->
-          <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-google"></i
-          ></a>
-
+         
           <!-- Instagram -->
           <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
           ><i class="fab fa-instagram"></i
@@ -175,12 +166,7 @@
 
 
       </div>
-      <div class="container p-4">
-        <!-- Section: Form -->
-
-
-      </div>
-
+      
 
       <!-- Copyright -->
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
